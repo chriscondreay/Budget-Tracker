@@ -41,7 +41,23 @@ self.addEventListener('activate', (e) => {
 })
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.url.startsWith(self.location.origin)) {
+  if (!event.request.url.startsWith(self.location.origin)) {
+    event.respondWith(fetch(event.request))
+    return;
+  }
+
+  if (event.request.url.includes("/api/transaction")) {
+    event.respondWith(
+    caches.open(RUNTIME_CACHE).then(cache => {
+              return fetch(event.request).then(response => {
+                  cache.put(event.request, response.clone());
+                  return response;
+                }).catch(() => caches.match(event.request));
+            })
+          );
+          return;
+        }
+
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
         if (cachedResponse) {
