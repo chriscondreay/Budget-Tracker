@@ -4,6 +4,7 @@ const FILES_TO_CACHE = [
   '/index.js',
   '/style.css',
   '/db.js',
+  'manifest.json'
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
 ];
@@ -73,5 +74,4 @@ self.addEventListener('fetch', (event) => {
         });
       })
     );
-  }
-});
+  });
