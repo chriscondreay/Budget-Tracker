@@ -2,7 +2,6 @@ const FILES_TO_CACHE = [
   '/',
   '/index.html',
   '/index.js',
-  '/style.css',
   '/db.js',
   './manifest.json'
   '/icons/icon-192x192.png',
@@ -10,7 +9,7 @@ const FILES_TO_CACHE = [
 ];
 
 const PRECACHE = 'precache-v1'
-const RUNTIME = 'runtime';
+const RUNTIME = 'runtime-cache';
 
 self.addEventListener('install', (e) => {
   e.waitUntil(
